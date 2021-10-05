@@ -1,0 +1,44 @@
+
+.content {
+
+}
+
+.textAndButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.button {
+    background-color: #484fad; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.checkBox {
+    display: flex;
+    justify-content: center;
+    margin: 10px
+}
+
+
+.todoList {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+
+.infoText {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    
+}
+
