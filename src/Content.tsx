@@ -32,23 +32,43 @@ export const Content = () => {
         setTodoList(todoList.filter( (task) => {return task.name !== nameToDelete} ) )
     }
     
-    return(
-        <div className="content"> 
-            <div className="taskInput">
-                <div className="textAndButton">
-                    <input className="inputBox" type="text" name="text" onChange={handleTextChange} value={taskName}/>
-                    <input className="button" type="button" value="Add task" onClick={addTask} />
+    if(todoList.length === 0) {
+        return(
+            <div className="content"> 
+                <div className="taskInput">
+                    <div className="textAndButton">
+                        <input className="inputBox" type="text" name="text" onChange={handleTextChange} value={taskName}/>
+                        <input className="button" type="button" value="Add task" onClick={addTask} />
+                    </div>
+                    <div className="checkBox">
+                        <input type="checkbox" value="Show all"/>
+                        Select all
+                    </div>
                 </div>
-                <div className="checkBox">
-                    <input type="checkbox" value="Show all"/>
-                    Select all
+                <div className="todoList">
+                    No tasks available...
                 </div>
             </div>
-            <div className="todoList">
-                {todoList.map( (taskCurr: ITask, key: number) => {
-                    return <DisplayTask task={taskCurr} deleteTask={deleteTask} />
-                })}
+        );
+    } else {
+        return(
+            <div className="content"> 
+                <div className="taskInput">
+                    <div className="textAndButton">
+                        <input className="inputBox" type="text" name="text" onChange={handleTextChange} value={taskName}/>
+                        <input className="button" type="button" value="Add task" onClick={addTask} />
+                    </div>
+                    <div className="checkBox">
+                        <input type="checkbox" value="Show all"/>
+                        Select all
+                    </div>
+                </div>
+                <div className="todoList">
+                    {todoList.map( (taskCurr: ITask, key: number) => {
+                        return <DisplayTask task={taskCurr} deleteTask={deleteTask} />
+                    })}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
