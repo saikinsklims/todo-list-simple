@@ -12,7 +12,6 @@ export const Content = () => {
     const [taskName, setTask] = useState<string>("");
     const [todoList, setTodoList] = useState<ITask[]>([]);
 
-
     // handle text changes
     const handleTextChange = (event: ChangeEvent<HTMLInputElement>): void => {
         if(event.target.name === "text") {
@@ -30,6 +29,7 @@ export const Content = () => {
 
     // delete task (filter by name)
     const deleteTask = ( nameToDelete: string ):void => {    
+        setTodoList(todoList.filter( (task) => {return task.name != nameToDelete} ) )
     }
     
     return(
@@ -46,7 +46,7 @@ export const Content = () => {
             </div>
             <div className="todoList">
                 {todoList.map( (taskCurr: ITask, key: number) => {
-                    return <DisplayTask task={taskCurr} />
+                    return <DisplayTask task={taskCurr} deleteTask={deleteTask} />
                 })}
             </div>
         </div>

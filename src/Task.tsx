@@ -11,9 +11,10 @@ export interface ITask {
 
 interface Props {
     task: ITask;
+    deleteTask(taskNameToDelete: string): void; 
 }
 
-export const DisplayTask = ( {task}:Props ) => {
+export const DisplayTask = ( {task, deleteTask}:Props ) => {
 
     return (
         <div className="task">            
@@ -25,7 +26,7 @@ export const DisplayTask = ( {task}:Props ) => {
             </div>
             <div className="infoAndText">
                 <input type="text" value={task.name} />
-                <input className="deleteButton" type="button" value="Delete" /> 
+                <input className="deleteButton" type="button" value="Delete" onClick={ () => {deleteTask(task.name)} } /> 
             </div>            
         </div>
     ); 
