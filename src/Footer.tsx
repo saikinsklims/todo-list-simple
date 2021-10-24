@@ -1,9 +1,10 @@
 import './Footer.css'
 
-
-
 export const Footer = () => {
     return(
-        <div>Footer</div>
+        <div className="footer">    
+            <div>Web Engineering 1</div>
+            <div>Created by Klims Saikins and Chris Linvers</div> 
+        </div>
     );
 }

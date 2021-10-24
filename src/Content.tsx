@@ -29,17 +29,10 @@ export const Content = () => {
     }
 
     // delete task (filter by name)
-    const deleteTask = ( nameToDelete: string ):void => {
-        
+    const deleteTask = ( nameToDelete: string ):void => {    
     }
-
-
-
-
-
     
     return(
-
         <div className="content"> 
             <div className="taskInput">
                 <div className="textAndButton">
@@ -51,21 +44,11 @@ export const Content = () => {
                     Select all
                 </div>
             </div>
-
-
-            <div className="infoText" >
-                Infotext
-            </div>
-
             <div className="todoList">
-                Tasklist
                 {todoList.map( (taskCurr: ITask, key: number) => {
                     return <DisplayTask task={taskCurr} />
                 })}
-
             </div>
-
-
         </div>
     );
 }

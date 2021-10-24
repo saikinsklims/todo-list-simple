@@ -1,5 +1,24 @@
 .App {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+input[type="text"] {
+  width: 400px;
+}
+
+input[type="button"] {
+  background-color: #7c48ad; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 
