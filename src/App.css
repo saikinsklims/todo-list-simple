@@ -7,11 +7,22 @@
 
 
 input[type="text"] {
-  width: 400px;
+  width: 300px;
 }
 
 input[type="button"] {
   background-color: #7c48ad; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+input[type="button"]:hover {
+  background-color: #a863e9;
   border: none;
   color: white;
   padding: 15px 32px;

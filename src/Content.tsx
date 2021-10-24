@@ -29,7 +29,7 @@ export const Content = () => {
 
     // delete task (filter by name)
     const deleteTask = ( nameToDelete: string ):void => {    
-        setTodoList(todoList.filter( (task) => {return task.name != nameToDelete} ) )
+        setTodoList(todoList.filter( (task) => {return task.name !== nameToDelete} ) )
     }
     
     return(
