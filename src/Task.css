@@ -30,3 +30,11 @@
     flex-direction: row;
     justify-content: center;
 }
+
+.highOpacity {
+    opacity: 0.8;
+}
+
+.lowOpacity {
+    opacity: 0.3;
+}

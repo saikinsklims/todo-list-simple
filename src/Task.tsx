@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './Task.css'
 
 
@@ -16,20 +17,33 @@ interface Props {
 
 export const DisplayTask = ( {task, deleteTask}:Props ) => {
 
+    const [prioIcon1Opacity, setprioIcon1Opacity] = useState("highOpacity");
+    const [prioIcon2Opacity, setprioIcon2Opacity] = useState("highOpacity");
+    const [prioIcon3Opacity, setprioIcon3Opacity] = useState("highOpacity");
+
     const changePrioLow = () => {
         task.priority = 0;
         console.log(task.name);
         console.log(task.priority)
+        setprioIcon1Opacity("highOpacity");
+        setprioIcon2Opacity("lowOpacity");
+        setprioIcon3Opacity("lowOpacity");
     }
     const changePrioMid = () => {
         task.priority = 1;
         console.log(task.name);
         console.log(task.priority)
+        setprioIcon1Opacity("highOpacity");
+        setprioIcon2Opacity("highOpacity");
+        setprioIcon3Opacity("lowOpacity");
     }
     const changePrioHigh = () => {
         task.priority = 2;
         console.log(task.name);
         console.log(task.priority)
+        setprioIcon1Opacity("highOpacity");
+        setprioIcon2Opacity("highOpacity");
+        setprioIcon3Opacity("highOpacity");
     }
 
     const setTaskDone = () => {
@@ -43,9 +57,9 @@ export const DisplayTask = ( {task, deleteTask}:Props ) => {
         <div className="task">            
             <input type="checkbox" name="checkDone" onChange={setTaskDone}/>
             <div className="prioLightning">
-                <div className="lowPrio"  onClick={changePrioLow}>  ⚡ </div>
-                <div className="midPrio"  onClick={changePrioMid}>  ⚡ </div>
-                <div className="highPrio" onClick={changePrioHigh} style={{opacity: 0.3}}> ⚡ </div>
+                <div className={prioIcon1Opacity}  onClick={changePrioLow}>  ⚡ </div>
+                <div className={prioIcon2Opacity}  onClick={changePrioMid}>  ⚡ </div>
+                <div className={prioIcon3Opacity}  onClick={changePrioHigh}> ⚡ </div>
             </div>
             <div className="taskAndDeleteButton">
                 <input type="text" value={task.name} />
