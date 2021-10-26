@@ -31,9 +31,6 @@ export const Content = () => {
 
     // displays tasks or text that no tasks are avaiable
     const displayTasks = () => {
-
-        console.log(showAllChecked);
-        let tasks : ReactNode;
         if (todoList.length === 0 ) {
             // display if no tasks are avaialble
             return(<div>No tasks available...</div>);
@@ -42,12 +39,12 @@ export const Content = () => {
             // FIXME: something is wrong... idk.            
             console.log(todoList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false))
             if (showAllChecked) {
-                return(<div>
+                return(
+                    <div>
                         {todoList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false).map(filteredTask => (
                             <DisplayTask task={filteredTask} deleteTask={deleteTask} />
-                            ))}
-                        </div>)
-                
+                        ))}
+                    </div>)
             } else {
                 return(
                     <div>
