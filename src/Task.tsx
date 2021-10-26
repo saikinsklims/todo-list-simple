@@ -25,6 +25,8 @@ export const DisplayTask = ( {task, deleteTask}:Props ) => {
     // sets task priority according selected icons
     const changePrio = (prio: number) => {
         task.priority = prio;
+        console.log(task.name);
+        console.log(task.priority);
         if (task.priority === 1) {
             setprioIcon1Opacity("highOpacity");
             setprioIcon2Opacity("lowOpacity");
@@ -54,7 +56,7 @@ export const DisplayTask = ( {task, deleteTask}:Props ) => {
 
     return (
         <div className="task">            
-            <input type="checkbox" name="checkDone" onChange={() => setTaskDone()}/>
+            <input type="checkbox" name="checkDone" defaultChecked={task.doneStatus} onClick={() => setTaskDone()}/>
             <div className="prioLightning">
                 <div className={prioIcon1Opacity}  onClick={() => changePrio(1)}>  ⚡ </div>
                 <div className={prioIcon2Opacity}  onClick={() => changePrio(2)}>  ⚡ </div>
