@@ -3,10 +3,6 @@ import './Content.css'
 import { ITask, DisplayTask } from './Task';
 
 
-
-
-
-
 export const Content = () => {
 
     const [taskName, setTask] = useState<string>("");
@@ -33,15 +29,11 @@ export const Content = () => {
         setTodoList(todoList.filter( (task) => {return task.name !== nameToDelete} ) )
     }
 
+    // displays tasks or text that no tasks are avaiable
     const displayTasks = () => {
-
         if (todoList.length === 0 ) {
             // display if no tasks are avaialble
-            return (
-                <div>
-                    <div>No tasks available...</div>
-                </div>  
-            );              
+            return (<div>No tasks available...</div>);        
         } else {
             // display todoList
             return (
@@ -54,7 +46,6 @@ export const Content = () => {
         }
     }
     
-
     return(
         <div className="content"> 
             <div className="taskInput">
@@ -70,5 +61,4 @@ export const Content = () => {
             <div className="todolist">{displayTasks()}</div>
         </div>
     );
-
 }

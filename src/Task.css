@@ -38,3 +38,11 @@
 .lowOpacity {
     opacity: 0.3;
 }
+
+.taskDone {
+    text-decoration: line-through;
+}
+
+.taskUndone {
+    
+}
