@@ -11,9 +11,10 @@
     margin: 10px
 }
 
-.todoList {
+.todolist {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: 70px;
-    
 }

@@ -45,7 +45,7 @@ export const DisplayTask = ( {task, deleteTask}:Props ) => {
             <div className="prioLightning">
                 <div className="lowPrio"  onClick={changePrioLow}>  ⚡ </div>
                 <div className="midPrio"  onClick={changePrioMid}>  ⚡ </div>
-                <div className="highPrio" onClick={changePrioHigh}> ⚡ </div>
+                <div className="highPrio" onClick={changePrioHigh} style={{opacity: 0.3}}> ⚡ </div>
             </div>
             <div className="taskAndDeleteButton">
                 <input type="text" value={task.name} />

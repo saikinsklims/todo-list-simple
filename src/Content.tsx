@@ -11,6 +11,7 @@ export const Content = () => {
 
     const [taskName, setTask] = useState<string>("");
     const [todoList, setTodoList] = useState<ITask[]>([]);
+    const [showAllChecked, setShowAllChecked] = useState<boolean>(true);
 
     // handle text changes
     const handleTextChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -31,44 +32,43 @@ export const Content = () => {
     const deleteTask = ( nameToDelete: string ):void => {    
         setTodoList(todoList.filter( (task) => {return task.name !== nameToDelete} ) )
     }
-    
-    if(todoList.length === 0) {
-        return(
-            <div className="content"> 
-                <div className="taskInput">
-                    <div className="textAndButton">
-                        <input className="inputBox" type="text" name="text" onChange={handleTextChange} value={taskName}/>
-                        <input className="button" type="button" value="Add task" onClick={addTask} />
-                    </div>
-                    <div className="checkBox">
-                        <input type="checkbox" value="Show all"/>
-                        Select all
-                    </div>
-                </div>
-                <div className="todoList">
-                    No tasks available...
-                </div>
-            </div>
-        );
-    } else {
-        return(
-            <div className="content"> 
-                <div className="taskInput">
-                    <div className="textAndButton">
-                        <input className="inputBox" type="text" name="text" onChange={handleTextChange} value={taskName}/>
-                        <input className="button" type="button" value="Add task" onClick={addTask} />
-                    </div>
-                    <div className="checkBox">
-                        <input type="checkbox" value="Show all"/>
-                        Select all
-                    </div>
-                </div>
-                <div className="todoList">
-                    {todoList.map( (taskCurr: ITask, key: number) => {
+
+    const displayTasks = () => {
+
+        if (todoList.length === 0 ) {
+            // display if no tasks are avaialble
+            return (
+                <div>
+                    <div>No tasks available...</div>
+                </div>  
+            );              
+        } else {
+            // display todoList
+            return (
+                <div >
+                    { todoList.map( (taskCurr: ITask, key: number) => {
                         return <DisplayTask task={taskCurr} deleteTask={deleteTask} />
                     })}
                 </div>
-            </div>
-        );
+            );
+        }
     }
+    
+
+    return(
+        <div className="content"> 
+            <div className="taskInput">
+                <div className="textAndButton">
+                    <input className="inputBox" type="text" name="text" onChange={handleTextChange} value={taskName}/>
+                    <input className="button" type="button" value="Add task" onClick={addTask} />
+                </div>
+                <div className="checkBox" defaultChecked={showAllChecked} onClick={() => setShowAllChecked(!showAllChecked)}>
+                    <input type="checkbox" value="Show all" />
+                    Show all
+                </div>
+            </div>
+            <div className="todolist">{displayTasks()}</div>
+        </div>
+    );
+
 }
