@@ -50,7 +50,7 @@ export const DisplayTask = ( {task, deleteTask, changePriority, setDoneStatus}:P
     // FIXME: setDoneStatus is currently always false --> set this according checkbox status
     return (
         <div className="task">            
-            <input type="checkbox" name="checkDone" defaultChecked={task.doneStatus} onClick={() => setDoneStatus(task.name, false)}/>
+            <input type="checkbox" name="checkDone" defaultChecked={task.doneStatus} onClick={() => setDoneStatus(task.name, !task.doneStatus)}/>
             <div className="prioLightning">
                 <div className={setOpacity(task.priority, 1)}  onClick={() => changePriority(task.name, 1)}>  ⚡ </div>
                 <div className={setOpacity(task.priority, 2)}  onClick={() => changePriority(task.name, 2)}>  ⚡ </div>
