@@ -2,11 +2,15 @@ import './Content.css'
 import { ChangeEvent, ReactNode, useState } from 'react';
 import { ITask, DisplayTask } from './Task';
 
+const taskIdCurr = 1;
+
+
 
 export const Content = () => {
 
     const [taskName, setTask] = useState<string>("");
-    const [todoList, setTodoList] = useState<ITask[]>([]);
+    const [taskList, setTaskList] = useState<ITask[]>([]);
+    // FIXME: implement method where filter will be enabled -_> callback to parent
     const [showAllChecked, setShowAllChecked] = useState<boolean>(false);
 
     // handle text changes
@@ -16,40 +20,62 @@ export const Content = () => {
         }
     }
 
-    // adds tasks into todoList
+    // adds tasks into taskLis
     const addTask = (): void => {
         const newTask = {name: taskName, priority: 0, doneStatus: false}
-        setTodoList([...todoList, newTask]);
-        console.log(todoList)
+        setTaskList([...taskList, newTask]);
+        console.log(taskList)
         setTask("");
     }
 
     // delete task (filter by name)
     const deleteTask = ( nameToDelete: string ):void => {    
-        setTodoList(todoList.filter( (task) => {return task.name !== nameToDelete} ) )
+        setTaskList(taskList.filter( (task) => {return task.name !== nameToDelete} ) )
+    }
+
+    // changes priority of task
+    const changePriority = (taskNameToChangePrio: string, newPriority: number):void => {
+        const newTasksList = taskList.map( task => {
+            if (task.name === taskNameToChangePrio) {
+                return { ...task, priority: newPriority}
+            }
+            return task
+        });
+        setTaskList(newTasksList);
+    }
+
+    // changes task status to done or not
+    const setDoneStatus = (taskNameToChangePrio: string, newDoneStatus: boolean):void => {
+        const newTasksList = taskList.map( task => {
+            if (task.name === taskNameToChangePrio) {
+                return { ...task, doneStatus: newDoneStatus}
+            }
+            return task
+        });
+        setTaskList(newTasksList);
     }
 
     // displays tasks or text that no tasks are avaiable
     const displayTasks = () => {
-        if (todoList.length === 0 ) {
+        if (taskList.length === 0 ) {
             // display if no tasks are avaialble
             return(<div>No tasks available...</div>);
         } else {
             // display filtered list
             // FIXME: something is wrong... idk.            
-            console.log(todoList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false))
+            console.log(taskList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false))
             if (showAllChecked) {
                 return(
                     <div>
-                        {todoList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false).map(filteredTask => (
-                            <DisplayTask task={filteredTask} deleteTask={deleteTask} />
+                        {taskList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false).map(filteredTask => (
+                            <DisplayTask task={filteredTask} deleteTask={deleteTask} changePriority={changePriority} setDoneStatus={setDoneStatus} />
                         ))}
                     </div>)
             } else {
                 return(
                     <div>
-                        {todoList.map((taskCurr: ITask, key: number) => (
-                            <DisplayTask task={taskCurr} deleteTask={deleteTask} />
+                        {taskList.map((taskCurr: ITask, key: number) => (
+                            <DisplayTask task={taskCurr} deleteTask={deleteTask} changePriority={changePriority} setDoneStatus={setDoneStatus} />
                         ))}
                     </div>
                 );
@@ -70,7 +96,7 @@ export const Content = () => {
                     <div>{showAllChecked}</div>
                 </div>
             </div>
-            <div className="todolist">{displayTasks()}</div>
+            <div className="taskList">{displayTasks()}</div>
         </div>
     );
 }
