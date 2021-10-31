@@ -46,9 +46,9 @@ export const Content = () => {
     }
 
     // changes task status to done or not
-    const setDoneStatus = (taskNameToChangePrio: string, newDoneStatus: boolean):void => {
+    const setDoneStatus = (idToChangeStatusDone: string, newDoneStatus: boolean):void => {
         const newTasksList = taskList.map( task => {
-            if (task.name === taskNameToChangePrio) {
+            if (task.id === idToChangeStatusDone) {
                 return { ...task, doneStatus: newDoneStatus}
             }
             return task

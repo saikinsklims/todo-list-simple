@@ -22,7 +22,6 @@ export const DisplayTask = ( {task, deleteTask, changePriority, setDoneStatus}:P
 
     // sets the task to done
     const setTaskDoneStyling = () => {
-
         if(task.doneStatus) {
             return ("taskDone")
         } else {
@@ -49,7 +48,7 @@ export const DisplayTask = ( {task, deleteTask, changePriority, setDoneStatus}:P
 
     return (
         <div className="task">            
-            <input type="checkbox" defaultChecked={task.doneStatus} checked={task.doneStatus === true ? true : false} onClick={() => setDoneStatus(task.name, !task.doneStatus)}/>
+            <input type="checkbox" defaultChecked={task.doneStatus} checked={task.doneStatus} onClick={() => setDoneStatus(task.id, !task.doneStatus)}/>
             <div className="prioLightning">
                 <div className={setOpacity(task.priority, 1)}  onClick={() => changePriority(task.id, 1)}>  ⚡ </div>
                 <div className={setOpacity(task.priority, 2)}  onClick={() => changePriority(task.id, 2)}>  ⚡ </div>
