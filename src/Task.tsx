@@ -31,7 +31,6 @@ export const DisplayTask = ( {task, deleteTask, changePriority, setDoneStatus}:P
 
     // sets dynamic styling of priority icons according tasks priority state
     const setOpacity = (prio: number, iconOrder: number) => {
-
         if (iconOrder === 1) {
             return "highOpacity"
         }
@@ -47,10 +46,9 @@ export const DisplayTask = ( {task, deleteTask, changePriority, setDoneStatus}:P
         }
     }
 
-    // FIXME: setDoneStatus is currently always false --> set this according checkbox status
     return (
         <div className="task">            
-            <input type="checkbox" name="checkDone" defaultChecked={task.doneStatus} onClick={() => setDoneStatus(task.name, !task.doneStatus)}/>
+            <input type="checkbox" defaultChecked={task.doneStatus} checked={task.doneStatus === true ? true : false} onClick={() => setDoneStatus(task.name, !task.doneStatus)}/>
             <div className="prioLightning">
                 <div className={setOpacity(task.priority, 1)}  onClick={() => changePriority(task.name, 1)}>  ⚡ </div>
                 <div className={setOpacity(task.priority, 2)}  onClick={() => changePriority(task.name, 2)}>  ⚡ </div>
