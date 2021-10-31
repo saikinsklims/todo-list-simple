@@ -2,16 +2,17 @@ import './Content.css'
 import { ChangeEvent, ReactNode, useState } from 'react';
 import { ITask, DisplayTask } from './Task';
 
-const taskIdCurr = 1;
 
-
+// start id for tesks
+let taskIdCurr = 1;
 
 export const Content = () => {
 
     const [taskName, setTask] = useState<string>("");
     const [taskList, setTaskList] = useState<ITask[]>([]);
     // FIXME: implement method where filter will be enabled -_> callback to parent
-    const [showAllChecked, setShowAllChecked] = useState<boolean>(false);
+    const [showAllChecked, setShowAllChecked] = useState<boolean>(false)
+    
 
     // handle text changes
     const handleTextChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -22,21 +23,21 @@ export const Content = () => {
 
     // adds tasks into taskLis
     const addTask = (): void => {
-        const newTask = {name: taskName, priority: 0, doneStatus: false}
+        const newTask = {id: (taskIdCurr++).toString(), name: taskName, priority: 0, doneStatus: false}
         setTaskList([...taskList, newTask]);
         console.log(taskList)
         setTask("");
     }
 
     // delete task (filter by name)
-    const deleteTask = ( nameToDelete: string ):void => {    
-        setTaskList(taskList.filter( (task) => {return task.name !== nameToDelete} ) )
+    const deleteTask = ( idToDelete: string ):void => {    
+        setTaskList(taskList.filter( (task) => {return task.id !== idToDelete} ) )
     }
 
     // changes priority of task
-    const changePriority = (taskNameToChangePrio: string, newPriority: number):void => {
+    const changePriority = (idToChange: string, newPriority: number):void => {
         const newTasksList = taskList.map( task => {
-            if (task.name === taskNameToChangePrio) {
+            if (task.id === idToChange) {
                 return { ...task, priority: newPriority}
             }
             return task

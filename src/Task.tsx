@@ -3,6 +3,7 @@ import './Task.css'
 
 
 export interface ITask {
+    id: string,
     name: string;
     priority: number;
     doneStatus: boolean;
@@ -50,13 +51,13 @@ export const DisplayTask = ( {task, deleteTask, changePriority, setDoneStatus}:P
         <div className="task">            
             <input type="checkbox" defaultChecked={task.doneStatus} checked={task.doneStatus === true ? true : false} onClick={() => setDoneStatus(task.name, !task.doneStatus)}/>
             <div className="prioLightning">
-                <div className={setOpacity(task.priority, 1)}  onClick={() => changePriority(task.name, 1)}>  ⚡ </div>
-                <div className={setOpacity(task.priority, 2)}  onClick={() => changePriority(task.name, 2)}>  ⚡ </div>
-                <div className={setOpacity(task.priority, 3)}  onClick={() => changePriority(task.name, 3)}>  ⚡ </div>
+                <div className={setOpacity(task.priority, 1)}  onClick={() => changePriority(task.id, 1)}>  ⚡ </div>
+                <div className={setOpacity(task.priority, 2)}  onClick={() => changePriority(task.id, 2)}>  ⚡ </div>
+                <div className={setOpacity(task.priority, 3)}  onClick={() => changePriority(task.id, 3)}>  ⚡ </div>
             </div>
             <div className="taskAndDeleteButton">
                 <input className={setTaskDoneStyling()} type="text" value={task.name} />
-                <input className="deleteButton" type="button" value="Delete" onClick={ () => {deleteTask(task.name)} } /> 
+                <input className="deleteButton" type="button" value="Delete" onClick={ () => {deleteTask(task.id)} } /> 
             </div>            
         </div>
     ); 
