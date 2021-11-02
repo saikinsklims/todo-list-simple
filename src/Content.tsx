@@ -64,14 +64,14 @@ export const Content = () => {
                 return(
                     <div>
                         {taskList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false).map(filteredTask => (
-                            <DisplayTask task={filteredTask} deleteTask={deleteTask} changePriority={changePriority} setDoneStatus={setDoneStatus} />
+                            <DisplayTask task={filteredTask} onDelete={deleteTask} onPrioChange={changePriority} onDoneStatusChange={setDoneStatus} />
                         ))}
                     </div>)
             } else {
                 return(
                     <div>
                         {taskList.map((taskCurr: ITask, key: number) => (
-                            <DisplayTask task={taskCurr} deleteTask={deleteTask} changePriority={changePriority} setDoneStatus={setDoneStatus} />
+                            <DisplayTask task={taskCurr} onDelete={deleteTask} onPrioChange={changePriority} onDoneStatusChange={setDoneStatus} />
                         ))}
                     </div>
                 );
@@ -81,7 +81,7 @@ export const Content = () => {
     
     return(
         <div className="content"> 
-            <TaskInput addTask={addTask} setDoneFilterStatus={setDoneFilterStatus}/>     
+            <TaskInput onAddTask={addTask} onFilterChange={setDoneFilterStatus}/>     
             <div className="taskList">{displayTasks()}</div>
         </div>
     );

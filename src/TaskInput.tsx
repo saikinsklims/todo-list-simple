@@ -3,11 +3,11 @@ import './TaskInput.css'
 
 
 interface Props {
-    addTask(taskName : string) : void;
-    setDoneFilterStatus(status : boolean):void;
+    onAddTask(taskName : string) : void;
+    onFilterChange(status : boolean):void;
 }
 
-export const TaskInput = ({addTask, setDoneFilterStatus}:Props) => {
+export const TaskInput = ({onAddTask, onFilterChange}:Props) => {
 
     const [taskName, setTaskName] = useState<string>("");
     const [showAllChecked, setShowAllChecked] = useState<boolean>(true)
@@ -22,13 +22,13 @@ export const TaskInput = ({addTask, setDoneFilterStatus}:Props) => {
 
     // send information to parent and reset own field
     const addTaskAndUpdateField = () => {
-        addTask(taskName);
+        onAddTask(taskName);
         setTaskName("");
     }
 
     const updateDoneFiltering = () => {
         setShowAllChecked(!showAllChecked)
-        setDoneFilterStatus(showAllChecked)
+        onFilterChange(showAllChecked)
     }
 
     return (
