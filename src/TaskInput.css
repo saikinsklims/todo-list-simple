@@ -1,0 +1,12 @@
+.textAndButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.checkBox {
+    display: flex;
+    justify-content: center;
+    margin: 10px
+}

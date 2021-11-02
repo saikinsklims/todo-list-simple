@@ -3,8 +3,5 @@ import { FcTodoList } from 'react-icons/fc'
 
 
 export const AppBar = () => {
-    return (    
-        
-        <div className="appBar">  <FcTodoList/> Todo App </div>  
-    );
+    return (<div className="appBar">  <FcTodoList/> Todo App </div>);
 }

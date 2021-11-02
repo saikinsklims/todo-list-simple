@@ -1,6 +1,7 @@
 import './Content.css'
-import { ChangeEvent, ReactNode, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { ITask, DisplayTask } from './Task';
+import { TaskInput } from './TaskInput'
 
 
 // start id for tesks
@@ -8,24 +9,15 @@ let taskIdCurr = 1;
 
 export const Content = () => {
 
-    const [taskName, setTask] = useState<string>("");
+    const [task, setTask] = useState<string>("");
     const [taskList, setTaskList] = useState<ITask[]>([]);
-    // FIXME: implement method where filter will be enabled -_> callback to parent
-    const [showAllChecked, setShowAllChecked] = useState<boolean>(false)
+    const [enableDoneFiler, setenableDoneFiler] = useState<boolean>(false)
     
 
-    // handle text changes
-    const handleTextChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        if(event.target.name === "text") {
-            setTask(event.target.value)
-        }
-    }
-
     // adds tasks into taskLis
-    const addTask = (): void => {
+    const addTask = (taskName : string): void => {
         const newTask = {id: (taskIdCurr++).toString(), name: taskName, priority: 0, doneStatus: false}
         setTaskList([...taskList, newTask]);
-        console.log(taskList)
         setTask("");
     }
 
@@ -56,6 +48,10 @@ export const Content = () => {
         setTaskList(newTasksList);
     }
 
+    const setDoneFilterStatus = (status : boolean) => {    
+        setenableDoneFiler(status)
+    }
+
     // displays tasks or text that no tasks are avaiable
     // TODO: change this to if blabla ? this : else this
     const displayTasks = () => {
@@ -64,9 +60,7 @@ export const Content = () => {
             return(<div>No tasks available...</div>);
         } else {
             // display filtered list
-            // FIXME: something is wrong... idk.            
-            console.log(taskList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false))
-            if (showAllChecked) {
+            if (enableDoneFiler) {
                 return(
                     <div>
                         {taskList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false).map(filteredTask => (
@@ -87,17 +81,7 @@ export const Content = () => {
     
     return(
         <div className="content"> 
-            <div className="taskInput">
-                <div className="textAndButton">
-                    <input className="inputBox" placeholder="Type in your task ..." type="text" name="text" onChange={handleTextChange} value={taskName}/>
-                    <input className="button" type="button" value="Add task" onClick={addTask} />
-                </div>
-                <div className="checkBox" defaultChecked={showAllChecked}>
-                    <input type="checkbox" defaultChecked={!showAllChecked} onClick={() => setShowAllChecked(!showAllChecked)}/>
-                    Show all
-                    <div>{showAllChecked}</div>
-                </div>
-            </div>
+            <TaskInput addTask={addTask} setDoneFilterStatus={setDoneFilterStatus}/>     
             <div className="taskList">{displayTasks()}</div>
         </div>
     );
