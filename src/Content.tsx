@@ -57,6 +57,7 @@ export const Content = () => {
     }
 
     // displays tasks or text that no tasks are avaiable
+    // TODO: change this to if blabla ? this : else this
     const displayTasks = () => {
         if (taskList.length === 0 ) {
             // display if no tasks are avaialble
@@ -88,7 +89,7 @@ export const Content = () => {
         <div className="content"> 
             <div className="taskInput">
                 <div className="textAndButton">
-                    <input className="inputBox" type="text" name="text" onChange={handleTextChange} value={taskName}/>
+                    <input className="inputBox" placeholder="Type in your task ..." type="text" name="text" onChange={handleTextChange} value={taskName}/>
                     <input className="button" type="button" value="Add task" onClick={addTask} />
                 </div>
                 <div className="checkBox" defaultChecked={showAllChecked}>

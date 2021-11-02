@@ -55,7 +55,7 @@ export const DisplayTask = ( {task, deleteTask, changePriority, setDoneStatus}:P
                 <div className={setOpacity(task.priority, 3)}  onClick={() => changePriority(task.id, 3)}>  ⚡ </div>
             </div>
             <div className="taskAndDeleteButton">
-                <input className={setTaskDoneStyling()} type="text" value={task.name} />
+                <input className={setTaskDoneStyling()} type="text" disabled={true} value={task.name} />
                 <input className="deleteButton" type="button" value="Delete" onClick={ () => {deleteTask(task.id)} } /> 
             </div>            
         </div>

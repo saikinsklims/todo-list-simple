@@ -1,5 +1,5 @@
 .App {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: 'Arial';
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,29 +7,33 @@
 
 
 input[type="text"] {
-  width: 300px;
+  font-family: 'Arial';
+  font-size: 18px;
+  width: 400px;
+  border: none;
+  border-bottom: 0.8mm solid;
 }
 
 input[type="button"] {
-  background-color: #7c48ad; 
+  background-color: #f5ab6b;
+  color: rgb(56, 56, 56);
   border: none;
-  color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 input[type="button"]:hover {
-  background-color: #a863e9;
+  background-color: #f8c596;
   border: none;
-  color: white;
+  color: rgb(56, 56, 56);
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 
