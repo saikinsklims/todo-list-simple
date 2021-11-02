@@ -5,3 +5,7 @@
     align-items: center;
     margin: 70px;
 }
+
+.noTasks {
+    font-weight: bold;
+}

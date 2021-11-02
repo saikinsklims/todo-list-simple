@@ -49,7 +49,7 @@ export const TaskField = ({filterShowAllStatus, taskList, onDelete, onPrioChange
 
     // show information that no tasks are available
     const showNoTaskInformation = () => {
-        return (<div className="taskList"> No tasks available... </div>);
+        return (<div className="taskList noTasks"> No tasks available... </div>);
     }
 
     return taskList.length === 0 ? showNoTaskInformation() : showTaskList();
