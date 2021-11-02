@@ -1,7 +1,8 @@
 import './Content.css'
-import { ChangeEvent, useState } from 'react';
-import { ITask, DisplayTask } from './Task';
+import { useState } from 'react';
+import { ITask } from './Task';
 import { TaskInput } from './TaskInput'
+import { TaskField } from './TaskField'
 
 
 // start id for tesks
@@ -9,7 +10,6 @@ let taskIdCurr = 1;
 
 export const Content = () => {
 
-    const [task, setTask] = useState<string>("");
     const [taskList, setTaskList] = useState<ITask[]>([]);
     const [enableDoneFiler, setenableDoneFiler] = useState<boolean>(false)
     
@@ -18,7 +18,6 @@ export const Content = () => {
     const addTask = (taskName : string): void => {
         const newTask = {id: (taskIdCurr++).toString(), name: taskName, priority: 0, doneStatus: false}
         setTaskList([...taskList, newTask]);
-        setTask("");
     }
 
     // delete task (filter by name)
@@ -52,37 +51,12 @@ export const Content = () => {
         setenableDoneFiler(status)
     }
 
-    // displays tasks or text that no tasks are avaiable
-    // TODO: change this to if blabla ? this : else this
-    const displayTasks = () => {
-        if (taskList.length === 0 ) {
-            // display if no tasks are avaialble
-            return(<div>No tasks available...</div>);
-        } else {
-            // display filtered list
-            if (enableDoneFiler) {
-                return(
-                    <div>
-                        {taskList.filter((taskCurr: ITask, key: number) => taskCurr.doneStatus === false).map(filteredTask => (
-                            <DisplayTask task={filteredTask} onDelete={deleteTask} onPrioChange={changePriority} onDoneStatusChange={setDoneStatus} />
-                        ))}
-                    </div>)
-            } else {
-                return(
-                    <div>
-                        {taskList.map((taskCurr: ITask, key: number) => (
-                            <DisplayTask task={taskCurr} onDelete={deleteTask} onPrioChange={changePriority} onDoneStatusChange={setDoneStatus} />
-                        ))}
-                    </div>
-                );
-            }
-        }
-    }
+
     
     return(
         <div className="content"> 
             <TaskInput onAddTask={addTask} onFilterChange={setDoneFilterStatus}/>     
-            <div className="taskList">{displayTasks()}</div>
+            <TaskField filterShowAllStatus={enableDoneFiler} taskList={taskList} onDelete={deleteTask} onPrioChange={changePriority} onDoneStatusChange={setDoneStatus} />
         </div>
     );
 }

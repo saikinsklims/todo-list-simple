@@ -17,7 +17,7 @@ interface Props {
     onDoneStatusChange(taskNameToChangePrio: string, newDoneStatus: boolean): void;
 }
 
-export const DisplayTask = ( {task, onDelete, onPrioChange, onDoneStatusChange}:Props ) => {
+export const Task = ( {task, onDelete, onPrioChange, onDoneStatusChange}:Props ) => {
 
     // sets the task to done
     const setTaskDoneStyling = () => {
