@@ -26,16 +26,28 @@ export const TaskInput = ({onAddTask, onFilterChange}:Props) => {
         setTaskName("");
     }
 
+    // update of if filtering of done tasks is enabled
     const updateDoneFiltering = () => {
-        setShowAllChecked(!showAllChecked)
-        onFilterChange(showAllChecked)
+        setShowAllChecked(!showAllChecked);
+        onFilterChange(showAllChecked);
+    }
+
+    // check if adding an additional task is allowed
+    const checkAddTaskAllowed = () => {
+        let retVal = true
+
+        if (taskName.length !== 0) {
+            retVal = false
+        }
+
+        return retVal
     }
 
     return (
         <div className="taskInput">
             <div className="textAndButton">
                 <input className="inputBox" placeholder="Type in your task ..." type="text" name="text" onChange={updateTaskName} value={taskName}/>
-                <input className="button" type="button" value="Add task" onClick={addTaskAndUpdateField} />
+                <input className="button" type="button" value="Add task" onClick={addTaskAndUpdateField} disabled={checkAddTaskAllowed()} />
             </div>
             <div className="checkBox">
                 <input type="checkbox" name="filtering" defaultChecked={showAllChecked} onClick={updateDoneFiltering}/>

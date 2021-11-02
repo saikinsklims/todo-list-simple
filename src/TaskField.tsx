@@ -18,9 +18,10 @@ export const TaskField = ({filterShowAllStatus, taskList, onDelete, onPrioChange
         if(filterShowAllStatus){
             return(
                 <div className="taskList">
-                    {taskList.filter((taskCurr: ITask, key: number) => 
-                    taskCurr.doneStatus === false).map(filteredTask => (
+                    {taskList.filter((taskCurr: ITask) => 
+                    taskCurr.doneStatus === false).map( (filteredTask: ITask, key:number) => (
                         <Task
+                            key={key}
                             task={filteredTask}
                             onDelete={onDelete}
                             onPrioChange={onPrioChange}
@@ -34,6 +35,7 @@ export const TaskField = ({filterShowAllStatus, taskList, onDelete, onPrioChange
                 <div className="taskList">
                     {taskList.map((taskCurr: ITask, key: number) => (
                         <Task
+                            key={key}
                             task={taskCurr}
                             onDelete={onDelete}
                             onPrioChange={onPrioChange}
