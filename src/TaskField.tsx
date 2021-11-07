@@ -5,14 +5,16 @@ import './TaskField.css'
 interface Props {
     taskInputCurr:string;
     filterShowAllStatus: boolean;
-    taskList:Array<ITask>;
-    onDelete(idToDelete: string):void;
-    onPrioChange(idToChange: string, newPriority: number):void;
-    onDoneStatusChange(idToChangeStatusDone: string, newDoneStatus: boolean):void;
+    taskList: Array<ITask>;
+    onDelete(idToDelete: string): void;
+    onPrioChange(idToChange: string, newPriority: number): void;
+    onDoneStatusChange(idToChangeStatusDone: string, newDoneStatus: boolean): void;
 }
 
 
+
 export const TaskField = ({taskInputCurr, filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange}:Props) => {
+
 
     
     // show tasklist accoring to set filter option

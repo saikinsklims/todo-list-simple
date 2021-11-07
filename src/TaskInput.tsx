@@ -3,8 +3,8 @@ import './TaskInput.css'
 
 
 interface Props {
-    onAddTask(taskName : string) : void;
-    onFilterChange(status : boolean):void;
+    onAddTask(taskName: string) : void;
+    onFilterChange(status: boolean):void;
     onInputFieldChange(taskName: string) :void;
 }
 
@@ -16,6 +16,7 @@ export const TaskInput = ({onAddTask, onFilterChange, onInputFieldChange}:Props)
 
     // handle text changes
     const updateTaskName = (event: ChangeEvent<HTMLInputElement>): void => {
+
         onInputFieldChange(taskName);
 
         if(event.target.name === "text") {
@@ -49,11 +50,11 @@ export const TaskInput = ({onAddTask, onFilterChange, onInputFieldChange}:Props)
     return (
         <div className="taskInput">
             <div className="textAndButton">
-                <input className="inputBox" placeholder="Type in your task ..." type="text" name="text" onChange={updateTaskName} value={taskName}/>
+                <input className="inputBox" placeholder="Type in your task ..." type="text" name="text" onChange={updateTaskName} value={taskName} />
                 <input className="button" type="button" value="Add task" onClick={addTaskAndUpdateField} disabled={checkAddTaskAllowed()} />
             </div>
             <div className="checkBox">
-                <input type="checkbox" name="filtering" defaultChecked={showAllChecked} onClick={updateDoneFiltering}/>
+                <input type="checkbox" name="filtering" defaultChecked={showAllChecked} onClick={updateDoneFiltering} />
                 <label htmlFor="filtering"> Show all tasks </label>
             </div>
         </div>

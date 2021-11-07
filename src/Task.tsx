@@ -13,16 +13,16 @@ export interface ITask {
 // interface to pass functions from outside
 interface Props {
     task: ITask;
-    onDelete(taskNameToDelete: string): void; 
+    onDelete(taskNameToDelete: string): void;
     onPrioChange(taskNameToChangePrio: string, newPriority: number): void;
     onDoneStatusChange(taskNameToChangePrio: string, newDoneStatus: boolean): void;
 }
 
-export const Task = ( {task, onDelete, onPrioChange, onDoneStatusChange}:Props ) => {
+export const Task = ({ task, onDelete, onPrioChange, onDoneStatusChange }: Props) => {
 
     // sets the task to done
     const setTaskDoneStyling = () => {
-        if(task.doneStatus) {
+        if (task.doneStatus) {
             return ("taskDone")
         } else {
             return ("taskUndone")
@@ -47,17 +47,18 @@ export const Task = ( {task, onDelete, onPrioChange, onDoneStatusChange}:Props )
     }
 
     return (
+
         <div className="task">            
             <input type="checkbox" checked={task.doneStatus} onClick={() => onDoneStatusChange(task.id, !task.doneStatus)}/>
             <div className="prioLightning">
-                <div className={setOpacity(task.priority, 1)}  onClick={() => onPrioChange(task.id, 1)}>  ⚡ </div>
-                <div className={setOpacity(task.priority, 2)}  onClick={() => onPrioChange(task.id, 2)}>  ⚡ </div>
-                <div className={setOpacity(task.priority, 3)}  onClick={() => onPrioChange(task.id, 3)}>  ⚡ </div>
+                <div className={setOpacity(task.priority, 1)} onClick={() => onPrioChange(task.id, 1)}>  ⚡ </div>
+                <div className={setOpacity(task.priority, 2)} onClick={() => onPrioChange(task.id, 2)}>  ⚡ </div>
+                <div className={setOpacity(task.priority, 3)} onClick={() => onPrioChange(task.id, 3)}>  ⚡ </div>
             </div>
             <div className="taskAndDeleteButton">
                 <input className={setTaskDoneStyling()} type="text" disabled={true} value={task.name} />
-                <input className="deleteButton" type="button" value="Delete" onClick={ () => {onDelete(task.id)} } /> 
-            </div>            
+                <input className="deleteButton" type="button" value="Delete" onClick={() => { onDelete(task.id) }} />
+            </div>
         </div>
-    ); 
+    );
 }

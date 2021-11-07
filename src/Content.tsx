@@ -13,25 +13,24 @@ export const Content = () => {
     const [taskList, setTaskList] = useState<ITask[]>([])
     const [enableDoneFiler, setenableDoneFiler] = useState<boolean>(false)
     const [taskListFilter, setTaskListFilter] = useState<string>(" ")
-    
 
     // adds tasks into taskLis
-    const addTask = (taskName : string): void => {
-        const newTask = {id: (taskIdCurr++).toString(), name: taskName, priority: 0, doneStatus: false}
+    const addTask = (taskName: string): void => {
+        const newTask = { id: (taskIdCurr++).toString(), name: taskName, priority: 0, doneStatus: false }
         setTaskList([...taskList, newTask]);
         setTaskListFilter("")
     }
 
     // delete task (filter by name)
-    const deleteTask = ( idToDelete: string ):void => {    
-        setTaskList(taskList.filter( (task) => {return task.id !== idToDelete} ) )
+    const deleteTask = (idToDelete: string): void => {
+        setTaskList(taskList.filter((task) => { return task.id !== idToDelete }))
     }
 
     // changes priority of task
-    const changePriority = (idToChange: string, newPriority: number):void => {
-        const newTasksList = taskList.map( task => {
+    const changePriority = (idToChange: string, newPriority: number): void => {
+        const newTasksList = taskList.map(task => {
             if (task.id === idToChange) {
-                return { ...task, priority: newPriority}
+                return { ...task, priority: newPriority }
             }
             return task
         });
@@ -39,10 +38,10 @@ export const Content = () => {
     }
 
     // changes task status to done or not
-    const setDoneStatus = (idToChangeStatusDone: string, newDoneStatus: boolean):void => {
-        const newTasksList = taskList.map( task => {
+    const setDoneStatus = (idToChangeStatusDone: string, newDoneStatus: boolean): void => {
+        const newTasksList = taskList.map(task => {
             if (task.id === idToChangeStatusDone) {
-                return { ...task, doneStatus: newDoneStatus}
+                return { ...task, doneStatus: newDoneStatus }
             }
             return task
         });
