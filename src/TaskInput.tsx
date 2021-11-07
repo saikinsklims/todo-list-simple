@@ -3,11 +3,11 @@ import './TaskInput.css'
 
 
 interface Props {
-    onAddTask(taskName : string) : void;
-    onFilterChange(status : boolean):void;
+    onAddTask(taskName: string): void;
+    onFilterChange(status: boolean): void;
 }
 
-export const TaskInput = ({onAddTask, onFilterChange}:Props) => {
+export const TaskInput = ({ onAddTask, onFilterChange }: Props) => {
 
     const [taskName, setTaskName] = useState<string>("");
     const [showAllChecked, setShowAllChecked] = useState<boolean>(true)
@@ -15,7 +15,7 @@ export const TaskInput = ({onAddTask, onFilterChange}:Props) => {
 
     // handle text changes
     const updateTaskName = (event: ChangeEvent<HTMLInputElement>): void => {
-        if(event.target.name === "text") {
+        if (event.target.name === "text") {
             setTaskName(event.target.value);
         }
     }
@@ -46,11 +46,11 @@ export const TaskInput = ({onAddTask, onFilterChange}:Props) => {
     return (
         <div className="taskInput">
             <div className="textAndButton">
-                <input className="inputBox" placeholder="Type in your task ..." type="text" name="text" onChange={updateTaskName} value={taskName}/>
+                <input className="inputBox" placeholder="Type in your task ..." type="text" name="text" onChange={updateTaskName} value={taskName} />
                 <input className="button" type="button" value="Add task" onClick={addTaskAndUpdateField} disabled={checkAddTaskAllowed()} />
             </div>
             <div className="checkBox">
-                <input type="checkbox" name="filtering" defaultChecked={showAllChecked} onClick={updateDoneFiltering}/>
+                <input type="checkbox" name="filtering" defaultChecked={showAllChecked} onClick={updateDoneFiltering} />
                 <label htmlFor="filtering"> Show all tasks </label>
             </div>
         </div>

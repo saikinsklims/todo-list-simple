@@ -4,34 +4,34 @@ import './TaskField.css'
 
 interface Props {
     filterShowAllStatus: boolean;
-    taskList:Array<ITask>;
-    onDelete(idToDelete: string):void;
-    onPrioChange(idToChange: string, newPriority: number):void;
-    onDoneStatusChange(idToChangeStatusDone: string, newDoneStatus: boolean):void;
+    taskList: Array<ITask>;
+    onDelete(idToDelete: string): void;
+    onPrioChange(idToChange: string, newPriority: number): void;
+    onDoneStatusChange(idToChangeStatusDone: string, newDoneStatus: boolean): void;
 }
 
 
-export const TaskField = ({filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange}:Props) => {
+export const TaskField = ({ filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange }: Props) => {
 
     // show tasklist accoring to set filter option
     const showTaskList = () => {
-        if(filterShowAllStatus){
-            return(
+        if (filterShowAllStatus) {
+            return (
                 <div className="taskList">
-                    {taskList.filter((taskCurr: ITask) => 
-                    taskCurr.doneStatus === false).map( (filteredTask: ITask, key:number) => (
-                        <Task
-                            key={key}
-                            task={filteredTask}
-                            onDelete={onDelete}
-                            onPrioChange={onPrioChange}
-                            onDoneStatusChange={onDoneStatusChange} 
-                        />
-                    ))}
+                    {taskList.filter((taskCurr: ITask) =>
+                        taskCurr.doneStatus === false).map((filteredTask: ITask, key: number) => (
+                            <Task
+                                key={key}
+                                task={filteredTask}
+                                onDelete={onDelete}
+                                onPrioChange={onPrioChange}
+                                onDoneStatusChange={onDoneStatusChange}
+                            />
+                        ))}
                 </div>
             );
         } else {
-            return(
+            return (
                 <div className="taskList">
                     {taskList.map((taskCurr: ITask, key: number) => (
                         <Task

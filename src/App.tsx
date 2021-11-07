@@ -9,10 +9,10 @@ import { Footer } from './Footer';
 function App() {
     return (
         <div className="App">
-            <AppBar /> 
+            <AppBar />
             <Content />
             <Footer />
-        </div>  
+        </div>
     );
 }
 
