@@ -1,5 +1,5 @@
-# ToDo App
-This App was by following developers
+# Todo App / Web Engineering 1 / 2021
+This App was developed by following developers:
 - Klims Saikins
 - Chris Linvers
 
