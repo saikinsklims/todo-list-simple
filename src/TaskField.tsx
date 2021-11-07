@@ -3,24 +3,22 @@ import './TaskField.css'
 
 
 interface Props {
-    taskInputCurr:string;
+    taskInputCurr: string;
     filterShowAllStatus: boolean;
     taskList: Array<ITask>;
     onDelete(idToDelete: string): void;
     onPrioChange(idToChange: string, newPriority: number): void;
     onDoneStatusChange(idToChangeStatusDone: string, newDoneStatus: boolean): void;
+    onSortByCriteria(sortCriteria: string): void;
 }
 
 
+export const TaskField = ({ taskInputCurr, filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange, onSortByCriteria }: Props) => {
 
-export const TaskField = ({taskInputCurr, filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange}:Props) => {
-
-
-    
     // show tasklist accoring to set filter option
     const showTaskList = () => {
         let retVal = <div></div>;
-        
+
         // apply filtering for teskList accoring user input, always active
         let taskListInputFiltered
 
