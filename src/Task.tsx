@@ -2,6 +2,7 @@ import './Task.css'
 
 
 export interface ITask {
+    [x: string]: any
     id: string,
     name: string;
     priority: number;
@@ -47,7 +48,7 @@ export const Task = ( {task, onDelete, onPrioChange, onDoneStatusChange}:Props )
 
     return (
         <div className="task">            
-            <input type="checkbox" defaultChecked={task.doneStatus} onClick={() => onDoneStatusChange(task.id, !task.doneStatus)}/>
+            <input type="checkbox" checked={task.doneStatus} onClick={() => onDoneStatusChange(task.id, !task.doneStatus)}/>
             <div className="prioLightning">
                 <div className={setOpacity(task.priority, 1)}  onClick={() => onPrioChange(task.id, 1)}>  ⚡ </div>
                 <div className={setOpacity(task.priority, 2)}  onClick={() => onPrioChange(task.id, 2)}>  ⚡ </div>

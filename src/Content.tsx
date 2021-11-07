@@ -5,19 +5,21 @@ import { TaskInput } from './TaskInput'
 import { TaskField } from './TaskField'
 
 
-// start id for tesks
+// start id for tasks
 let taskIdCurr = 1;
 
 export const Content = () => {
 
-    const [taskList, setTaskList] = useState<ITask[]>([]);
+    const [taskList, setTaskList] = useState<ITask[]>([])
     const [enableDoneFiler, setenableDoneFiler] = useState<boolean>(false)
+    const [taskListFilter, setTaskListFilter] = useState<string>(" ")
     
 
     // adds tasks into taskLis
     const addTask = (taskName : string): void => {
         const newTask = {id: (taskIdCurr++).toString(), name: taskName, priority: 0, doneStatus: false}
         setTaskList([...taskList, newTask]);
+        setTaskListFilter("")
     }
 
     // delete task (filter by name)
@@ -47,16 +49,25 @@ export const Content = () => {
         setTaskList(newTasksList);
     }
 
+    // change status of filtering by "doneState"
     const setDoneFilterStatus = (status : boolean) => {    
         setenableDoneFiler(status)
     }
 
-
+    // set filter for task list
+    const setFilterForTaskList = (filterName: string) => {
+        // niminal 2 letters must be typed in
+        if (filterName.length < 2) {
+            setTaskListFilter("")
+        } else {
+            setTaskListFilter(filterName)
+        }
+    }
     
     return(
         <div className="content"> 
-            <TaskInput onAddTask={addTask} onFilterChange={setDoneFilterStatus}/>     
-            <TaskField filterShowAllStatus={enableDoneFiler} taskList={taskList} onDelete={deleteTask} onPrioChange={changePriority} onDoneStatusChange={setDoneStatus} />
+            <TaskInput onAddTask={addTask} onFilterChange={setDoneFilterStatus} onInputFieldChange={setFilterForTaskList}/>     
+            <TaskField taskInputCurr={taskListFilter} filterShowAllStatus={enableDoneFiler} taskList={taskList} onDelete={deleteTask} onPrioChange={changePriority} onDoneStatusChange={setDoneStatus} />
         </div>
     );
 }

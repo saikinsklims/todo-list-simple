@@ -3,6 +3,7 @@ import './TaskField.css'
 
 
 interface Props {
+    taskInputCurr:string;
     filterShowAllStatus: boolean;
     taskList:Array<ITask>;
     onDelete(idToDelete: string):void;
@@ -11,29 +12,29 @@ interface Props {
 }
 
 
-export const TaskField = ({filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange}:Props) => {
+export const TaskField = ({taskInputCurr, filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange}:Props) => {
 
+    
     // show tasklist accoring to set filter option
     const showTaskList = () => {
-        if(filterShowAllStatus){
-            return(
-                <div className="taskList">
-                    {taskList.filter((taskCurr: ITask) => 
-                    taskCurr.doneStatus === false).map( (filteredTask: ITask, key:number) => (
-                        <Task
-                            key={key}
-                            task={filteredTask}
-                            onDelete={onDelete}
-                            onPrioChange={onPrioChange}
-                            onDoneStatusChange={onDoneStatusChange} 
-                        />
-                    ))}
-                </div>
-            );
+        let retVal = <div></div>;
+        
+        // apply filtering for teskList accoring user input, always active
+        let taskListInputFiltered
+
+        taskListInputFiltered = taskList.filter(task => task.name.includes(taskInputCurr))
+
+        // filter tasks according done status
+        if (filterShowAllStatus) {
+            taskListInputFiltered = taskListInputFiltered.filter(task => !task.doneStatus);
+        }
+
+        if (taskListInputFiltered.length === 0) {
+            retVal = <div className="taskList noTasks">No similar tasks found</div>
         } else {
-            return(
+            retVal = (
                 <div className="taskList">
-                    {taskList.map((taskCurr: ITask, key: number) => (
+                    {taskListInputFiltered.map((taskCurr: ITask, key: number) => (
                         <Task
                             key={key}
                             task={taskCurr}
@@ -45,6 +46,8 @@ export const TaskField = ({filterShowAllStatus, taskList, onDelete, onPrioChange
                 </div>
             );
         }
+
+        return retVal;
     }
 
     // show information that no tasks are available
