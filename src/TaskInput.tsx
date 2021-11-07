@@ -3,11 +3,12 @@ import './TaskInput.css'
 
 
 interface Props {
-    onAddTask(taskName: string): void;
-    onFilterChange(status: boolean): void;
+    onAddTask(taskName: string) : void;
+    onFilterChange(status: boolean):void;
+    onInputFieldChange(taskName: string) :void;
 }
 
-export const TaskInput = ({ onAddTask, onFilterChange }: Props) => {
+export const TaskInput = ({onAddTask, onFilterChange, onInputFieldChange}:Props) => {
 
     const [taskName, setTaskName] = useState<string>("");
     const [showAllChecked, setShowAllChecked] = useState<boolean>(true)
@@ -15,9 +16,12 @@ export const TaskInput = ({ onAddTask, onFilterChange }: Props) => {
 
     // handle text changes
     const updateTaskName = (event: ChangeEvent<HTMLInputElement>): void => {
-        if (event.target.name === "text") {
+
+        onInputFieldChange(taskName);
+
+        if(event.target.name === "text") {
             setTaskName(event.target.value);
-        }
+        }   
     }
 
     // send information to parent and reset own field
