@@ -2,20 +2,19 @@ import './Task.css'
 
 
 export interface ITask {
-    [x: string]: any
-    id: string,
-    name: string;
-    priority: number;
-    doneStatus: boolean;
+    id: string
+    name: string
+    priority: number
+    doneStatus: boolean
 }
 
 
 // interface to pass functions from outside
 interface Props {
-    task: ITask;
-    onDelete(taskNameToDelete: string): void;
-    onPrioChange(taskNameToChangePrio: string, newPriority: number): void;
-    onDoneStatusChange(taskNameToChangePrio: string, newDoneStatus: boolean): void;
+    task: ITask
+    onDelete(taskNameToDelete: string): void
+    onPrioChange(taskNameToChangePrio: string, newPriority: number): void
+    onDoneStatusChange(taskNameToChangePrio: string, newDoneStatus: boolean): void
 }
 
 export const Task = ({ task, onDelete, onPrioChange, onDoneStatusChange }: Props) => {

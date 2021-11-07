@@ -3,47 +3,43 @@ import './TaskInput.css'
 
 
 interface Props {
-    onAddTask(taskName: string) : void;
-    onFilterChange(status: boolean):void;
-    onInputFieldChange(taskName: string) :void;
+    onAddTask(taskName: string) : void
+    onFilterChange(status: boolean):void
+    onInputFieldChange(taskName: string) :void
 }
 
 export const TaskInput = ({onAddTask, onFilterChange, onInputFieldChange}:Props) => {
 
-    const [taskName, setTaskName] = useState<string>("");
+    const [taskName, setTaskName] = useState<string>("")
     const [showAllChecked, setShowAllChecked] = useState<boolean>(true)
 
 
     // handle text changes
     const updateTaskName = (event: ChangeEvent<HTMLInputElement>): void => {
-
-        onInputFieldChange(taskName);
-
+        onInputFieldChange(taskName)
         if(event.target.name === "text") {
-            setTaskName(event.target.value);
+            setTaskName(event.target.value)
         }   
     }
 
     // send information to parent and reset own field
     const addTaskAndUpdateField = () => {
-        onAddTask(taskName);
-        setTaskName("");
+        onAddTask(taskName)
+        setTaskName("")
     }
 
     // update of if filtering of done tasks is enabled
     const updateDoneFiltering = () => {
-        setShowAllChecked(!showAllChecked);
-        onFilterChange(showAllChecked);
+        setShowAllChecked(!showAllChecked)
+        onFilterChange(showAllChecked)
     }
 
     // check if adding an additional task is allowed
     const checkAddTaskAllowed = () => {
         let retVal = true
-
         if (taskName.length !== 0) {
             retVal = false
         }
-
         return retVal
     }
 

@@ -3,25 +3,24 @@ import './TaskField.css'
 
 
 interface Props {
-    taskInputCurr: string;
-    filterShowAllStatus: boolean;
-    taskList: Array<ITask>;
-    onDelete(idToDelete: string): void;
-    onPrioChange(idToChange: string, newPriority: number): void;
-    onDoneStatusChange(idToChangeStatusDone: string, newDoneStatus: boolean): void;
+    taskInputCurr: string
+    filterShowAllStatus: boolean
+    taskList: Array<ITask>
+    onDelete(idToDelete: string): void
+    onPrioChange(idToChange: string, newPriority: number): void
+    onDoneStatusChange(idToChangeStatusDone: string, newDoneStatus: boolean): void
     onSortByCriteria(sortCriteria: string): void;
 }
-
 
 export const TaskField = ({ taskInputCurr, filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange, onSortByCriteria }: Props) => {
 
     // show tasklist accoring to set filter option
     const showTaskList = () => {
-        let retVal = <div></div>;
+        let retVal = <div></div>
+
 
         // apply filtering for teskList accoring user input, always active
         let taskListInputFiltered
-
         taskListInputFiltered = taskList.filter(task => task.name.includes(taskInputCurr))
 
         // filter tasks according done status
@@ -52,8 +51,8 @@ export const TaskField = ({ taskInputCurr, filterShowAllStatus, taskList, onDele
 
     // show information that no tasks are available
     const showNoTaskInformation = () => {
-        return (<div className="taskList noTasks"> No tasks available... </div>);
+        return (<div className="taskList noTasks"> No tasks available... </div>)
     }
 
-    return taskList.length === 0 ? showNoTaskInformation() : showTaskList();
+    return taskList.length === 0 ? showNoTaskInformation() : showTaskList()
 }
