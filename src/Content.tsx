@@ -6,7 +6,7 @@ import { TaskField } from './TaskField'
 
 
 // start id for tasks
-let taskIdCurr = 1;
+let taskIdCurr = 1
 
 export const Content = () => {
 
@@ -17,7 +17,7 @@ export const Content = () => {
     // adds tasks into taskLis
     const addTask = (taskName: string): void => {
         const newTask = { id: (taskIdCurr++).toString(), name: taskName, priority: 0, doneStatus: false }
-        setTaskList([...taskList, newTask]);
+        setTaskList([...taskList, newTask])
         setTaskListFilter("")
     }
 
@@ -34,7 +34,7 @@ export const Content = () => {
             }
             return task
         });
-        setTaskList(newTasksList);
+        setTaskList(newTasksList)
     }
 
     // changes task status to done or not
@@ -45,7 +45,7 @@ export const Content = () => {
             }
             return task
         });
-        setTaskList(newTasksList);
+        setTaskList(newTasksList)
     }
 
     // change status of filtering by "doneState"
