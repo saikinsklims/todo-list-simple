@@ -13,7 +13,7 @@ export const Content = () => {
     const [taskList, setTaskList] = useState<ITask[]>([])
     const [enableDoneFiler, setenableDoneFiler] = useState<boolean>(false)
     const [taskListFilter, setTaskListFilter] = useState<string>(" ")
-    const [sortCriteria, sortByCriteria] = useState<string>("")
+    const [sortByPrio, setSortByPrio] = useState<number>(0)
 
     // adds tasks into taskLis
     const addTask = (taskName: string): void => {
@@ -65,14 +65,14 @@ export const Content = () => {
     }
 
     // set a sort criteria for the task list
-    const setSortCriteria = (sortCriteria: string) => {
-
+    const setPrioritySort = (priorityStatus : number) => {
+        setSortByPrio(priorityStatus)
     }
 
     return (
         <div className="content">
-            <TaskInput onAddTask={addTask} onFilterChange={setDoneFilterStatus} onInputFieldChange={setFilterForTaskList} />
-            <TaskField taskInputCurr={taskListFilter} onSortByCriteria={setSortCriteria} filterShowAllStatus={enableDoneFiler} taskList={taskList} onDelete={deleteTask} onPrioChange={changePriority} onDoneStatusChange={setDoneStatus} />
+            <TaskInput onAddTask={addTask} onFilterChange={setDoneFilterStatus} onInputFieldChange={setFilterForTaskList} onSortByPrio={setPrioritySort} />
+            <TaskField taskInputCurr={taskListFilter} onSortByPrio={sortByPrio} filterShowAllStatus={enableDoneFiler} taskList={taskList} onDelete={deleteTask} onPrioChange={changePriority} onDoneStatusChange={setDoneStatus} />
         </div>
     );
 }

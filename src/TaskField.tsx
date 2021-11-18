@@ -9,10 +9,10 @@ interface Props {
     onDelete(idToDelete: string): void
     onPrioChange(idToChange: string, newPriority: number): void
     onDoneStatusChange(idToChangeStatusDone: string, newDoneStatus: boolean): void
-    onSortByCriteria(sortCriteria: string): void;
+    onSortByPrio: number
 }
 
-export const TaskField = ({ taskInputCurr, filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange, onSortByCriteria }: Props) => {
+export const TaskField = ({ taskInputCurr, filterShowAllStatus, taskList, onDelete, onPrioChange, onDoneStatusChange, onSortByPrio }: Props) => {
 
     // show tasklist accoring to set filter option
     const showTaskList = () => {
@@ -26,6 +26,13 @@ export const TaskField = ({ taskInputCurr, filterShowAllStatus, taskList, onDele
         // filter tasks according done status
         if (filterShowAllStatus) {
             taskListInputFiltered = taskListInputFiltered.filter(task => !task.doneStatus);
+        }
+
+        // sort by priority if set
+        if (onSortByPrio === 0) {
+            taskList.sort((a,b) => (a.priority > b.priority) ? 1: -1)
+        } else if (onSortByPrio === 1) {
+            taskList.sort((a,b) => (a.priority < b.priority) ? 1: -1)
         }
 
         if (taskListInputFiltered.length === 0) {

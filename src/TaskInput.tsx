@@ -4,15 +4,16 @@ import './TaskInput.css'
 
 interface Props {
     onAddTask(taskName: string) : void
-    onFilterChange(status: boolean):void
-    onInputFieldChange(taskName: string) :void
+    onFilterChange(status: boolean) : void
+    onInputFieldChange(taskName: string) : void
+    onSortByPrio(priorityStatus : number) : void
 }
 
-export const TaskInput = ({onAddTask, onFilterChange, onInputFieldChange}:Props) => {
+export const TaskInput = ({onAddTask, onFilterChange, onInputFieldChange, onSortByPrio}:Props) => {
 
     const [taskName, setTaskName] = useState<string>("")
     const [showAllChecked, setShowAllChecked] = useState<boolean>(true)
-
+    const [prioritySort, setPrioritySort] = useState<number>(0)
 
     // handle text changes
     const updateTaskName = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -43,6 +44,25 @@ export const TaskInput = ({onAddTask, onFilterChange, onInputFieldChange}:Props)
         return retVal
     }
 
+    // set how to sort, 0 = no sort, 1 = high prio, 2 = low prio
+    const setHowToSort = () => {
+        setPrioritySort(prioritySort + 1)
+        if (prioritySort > 1) {
+            setPrioritySort(0)
+        }
+        onSortByPrio(prioritySort)
+    }
+    // adds an arrow indicator for current sort status
+    const addSortArrow = () => {
+        if (prioritySort === 0) {
+            return "⇉"
+        } else if (prioritySort === 1) {
+            return "⇈"
+        } else if (prioritySort === 2) {
+            return "⇊"
+        }
+    }
+
     return (
         <div className="taskInput">
             <div className="textAndButton">
@@ -53,6 +73,7 @@ export const TaskInput = ({onAddTask, onFilterChange, onInputFieldChange}:Props)
                 <input type="checkbox" name="filtering" defaultChecked={showAllChecked} onClick={updateDoneFiltering} />
                 <label htmlFor="filtering"> Show all tasks </label>
             </div>
+            <div className="sortByPrio" onClick={setHowToSort}> Kick to sort by priority {addSortArrow()}</div>
         </div>
     );
 

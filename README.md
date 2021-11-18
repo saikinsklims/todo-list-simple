@@ -1,5 +1,5 @@
 # Todo App / Web Engineering 1 / 2021
-This App was developed by following developers:
+This App was created by following developers:
 - Klims Saikins
 - Chris Linvers
 
@@ -9,9 +9,10 @@ This App was developed by following developers:
 - Run "npm start" to start the application
 
 # Additional features
-- Add task button diabled if no task is typed in
+- Added: task button diabled if no task is typed in
+- Added: Sort by priority
 
 # Planed features
 - Add of progressbar
-- Additional filtering options (e.g. filter tasks by prio or name)
+- Additional filtering options (e.g. by name)
 - Change style to grid

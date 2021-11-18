@@ -11,3 +11,11 @@
     justify-content: center;
     margin: 10px
 }
+
+.sortByPrio {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-top: 50px
+    
+}
